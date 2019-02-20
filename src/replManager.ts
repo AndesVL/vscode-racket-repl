@@ -22,11 +22,12 @@ export class REPLManager implements vscode.Disposable {
         //Create a new terminal
         this._terminal = this.init_terminal();
 
-        const dir = fileUri.path.substring(1, fileUri.path.lastIndexOf("/")); //skip first "/"
+        const dir = fileUri.path.substring(1, fileUri.path.lastIndexOf("/"));
         const file = fileUri.path.substring(fileUri.path.lastIndexOf("/") + 1);
 
         //Enter working directory.
         this._terminal.sendText(`cd ${dir}`);
+        this._terminal.sendText(`cd ${"/" + dir}`); //cheat to operate on both windows and bash shells
 
         //Some cleanup.
         this._terminal.sendText('clear');

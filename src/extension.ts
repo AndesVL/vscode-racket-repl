@@ -22,7 +22,6 @@ export function activate(context: vscode.ExtensionContext) {
 		manager.stop();
 	});
 
-
 	context.subscriptions.push(run);
 }
 
