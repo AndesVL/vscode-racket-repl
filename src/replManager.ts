@@ -22,24 +22,12 @@ export class REPLManager implements vscode.Disposable {
         //Create a new terminal
         this._terminal = this.init_terminal();
 
-        const dir = fileUri.path.substring(1, fileUri.path.lastIndexOf("/")); //drop first "/" in windows paths: /c...
+        const dir = fileUri.path.substring(0, fileUri.path.lastIndexOf("/")); //drop first "/" in windows paths: /c...
         const file = fileUri.path.substring(fileUri.path.lastIndexOf("/") + 1);
 
-        //Enter working directory.
-        this._terminal.sendText(`cd ${dir}`);
-        this._terminal.sendText(`cd ${"/" + dir}`); //cheat to operate on both windows and bash shells (1 of of the cd's will fail)
-
-        //Some cleanup.
-        this._terminal.sendText('clear');
-
-        //Run command in terminal.
-        const xreplCmd = '(require xrepl)' //import additional terminal features
-        const enterModuleCmd = `(dynamic-enter! (symbol->string (quote ${file})))` //enters the namespace of file
-        const clearRunLineCmd = '(require ansi) (for-each display (list \"\\e[3A\" \"\\e[2M\"))'//clears the racket call in bash/cmd shell
-        //uses ansi codes: (move-cursor-up 3) and (delte-lines 2)
-
-        const runCmd = `racket -i -e \' ${xreplCmd} ${enterModuleCmd} ${clearRunLineCmd} \'`
-        this._terminal.sendText(runCmd);
+        //Rust program "launch" launches Racket REPL and cleans up terminal
+        this._terminal.sendText(`cd ${__dirname}`);
+        this._terminal.sendText(`./launch ${dir} ${file}`);
 
         //Focus terminal.
         this._terminal.show(true);
