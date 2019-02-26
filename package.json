@@ -54,12 +54,12 @@
 		"menus": {
 			"editor/title": [
 				{
-					"when": "config.racket-repl.showRunCommandInEditorContextMenu",
+					"when": "editorLangId == racket && config.racket-repl.showRunCommandInEditorContextMenu",
 					"command": "racket-repl.run",
 					"group": "navigation"
 				},
 				{
-					"when": "config.racket-repl.showStopCommandInEditorContextMenu",
+					"when": "editorLangId == racket && config.racket-repl.showStopCommandInEditorContextMenu",
 					"command": "racket-repl.stop",
 					"group": "navigation"
 				}
