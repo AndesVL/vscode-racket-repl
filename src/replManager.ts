@@ -1,5 +1,6 @@
 "use strict";
 import * as vscode from "vscode";
+import { win32 } from "path";
 const os = require('os');
 
 const os_type = os.platform();
@@ -40,8 +41,18 @@ export class REPLManager implements vscode.Disposable {
     public async stop(terminal: vscode.Terminal = this._terminal) {
         terminal.hide();
         const pid = await terminal.processId;
-        const exec = require('child_process').exec;
-        exec(`kill -9 ${pid}`); //kill terminal process using SIGKILL
+        //On windows and linux require a different kill method.
+        switch (os_type) {
+            case 'win32': {
+                const kill = require('tree-kill');
+                kill(pid);
+                return;
+            }
+            default: {
+                const exec = require('child_process').exec;
+                exec(`kill -9 ${pid}`); //kill terminal process using SIGKILL
+            }
+        }
     }
 
     //Stop REPL when object gets disposed.
