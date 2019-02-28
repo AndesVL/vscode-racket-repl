@@ -1,0 +1,7 @@
+[package]
+name = "vscode-racket-repl"
+version = "0.1.0"
+authors = ["AndesVL <andes.van.lancker@vub.be>"]
+edition = "2018"
+
+[dependencies]

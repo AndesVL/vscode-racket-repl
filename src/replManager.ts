@@ -1,5 +1,8 @@
 "use strict";
 import * as vscode from "vscode";
+const os = require('os');
+
+const os_type = os.platform();
 
 export class REPLManager implements vscode.Disposable {
     private _terminal: vscode.Terminal;
@@ -22,12 +25,12 @@ export class REPLManager implements vscode.Disposable {
         //Create a new terminal
         this._terminal = this.init_terminal();
 
-        const dir = fileUri.path.substring(0, fileUri.path.lastIndexOf("/")); //drop first "/" in windows paths: /c...
-        const file = fileUri.path.substring(fileUri.path.lastIndexOf("/") + 1);
+        var dir: String = fileUri.path.substring(0, fileUri.path.lastIndexOf("/"));
+        dir = this.formatPath(dir);
+        const file: String = fileUri.path.substring(fileUri.path.lastIndexOf("/") + 1);
 
-        //Rust program "launch" launches Racket REPL and cleans up terminal
-        this._terminal.sendText(`cd ${__dirname}`);
-        this._terminal.sendText(`./launch ${dir} ${file}`);
+        //Start the REPL.
+        this.launch(dir, file);
 
         //Focus terminal.
         this._terminal.show(true);
@@ -44,5 +47,32 @@ export class REPLManager implements vscode.Disposable {
     //Stop REPL when object gets disposed.
     dispose() {
         this.stop();
+    }
+
+    //Formats a filepath correctly.
+    private formatPath(path: String): String {
+        switch (os_type) {
+            //On Windows systems, remove the first "/" in "/c:..."
+            case 'win32': return path.substr(1, path.length);
+            default: return path;
+        }
+    }
+
+    //Launches the REPL script.
+    //This is a Rust program which clears the current terminal and then launches the REPL.
+    //Each OS has a different binary.
+    private launch(dir: String, file: String) {
+        var launcher: String;
+        switch (os_type) {
+            case 'win32': launcher = 'launch_windows.exe'; break;
+            case 'linux': launcher = 'launch_linux'; break;
+            default: {
+                vscode.window.showErrorMessage(`Your operating system: ${os_type}, is not yet supported.`);
+                return;
+            }
+        }
+        //Rust program launches Racket REPL and cleans up terminal, this hides the "sendText" command
+        this._terminal.sendText(`cd ${__dirname}`); //binaries are stored in "out" folder
+        this._terminal.sendText(`./${launcher} ${dir} ${file}`);
     }
 }
