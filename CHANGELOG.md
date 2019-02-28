@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [1.1.0]
+- Fixed various bugs
+- Now works on linux/bash and powershell
+- Linux/bash: terminal is cleared before entering REPL
 
-## [Unreleased]
+## [1.0.0]
 - Initial release
