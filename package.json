@@ -1,105 +1,105 @@
 {
-	"name": "racket-repl",
-	"displayName": "racket-repl",
-	"description": "Integrate Racket's REPL into Visual Studio Code.",
-	"version": "1.0.0",
-	"publisher": "Andes",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/AndesVL/vscode-racket-repl.git"
-	},
-	"engines": {
-		"vscode": "^1.31.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:racket-repl.helloWorld",
-		"onLanguage:racket"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "racket-repl.run",
-				"title": "Run file in REPL",
-				"icon": {
-					"light": "./images/run-racket.png",
-					"dark": "./images/run-racket.png"
-				}
-			},
-			{
-				"command": "racket-repl.stop",
-				"title": "Stop REPL",
-				"icon": {
-					"light": "./images/stop-racket.png",
-					"dark": "./images/stop-racket.png"
-				}
-			}
-		],
-		"languages": [
-			{
-				"id": "racket",
-				"aliases": [
-					"Racket",
-					"racket"
-				],
-				"extensions": [
-					".rkt"
-				]
-			}
-		],
-		"menus": {
-			"editor/title": [
-				{
-					"when": "editorLangId == racket && config.racket-repl.showRunCommandInEditorContextMenu",
-					"command": "racket-repl.run",
-					"group": "navigation"
-				},
-				{
-					"when": "editorLangId == racket && config.racket-repl.showStopCommandInEditorContextMenu",
-					"command": "racket-repl.stop",
-					"group": "navigation"
-				}
-			]
-		},
-		"configuration": {
-			"type": "object",
-			"title": "Racket REPL configuration",
-			"properties": {
-				"racket-repl.showRunCommandInEditorContextMenu": {
-					"type": "boolean",
-					"default": true,
-					"description": "Whether to show 'Run Code' icon in editor title menu.",
-					"scope": "resource"
-				},
-				"racket-repl.showStopCommandInEditorContextMenu": {
-					"type": "boolean",
-					"default": true,
-					"description": "Whether to show 'Stop Code' icon in editor title menu.",
-					"scope": "resource"
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./ && ./compileAllTargets.sh",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
-	},
-	"dependencies": {
-		"find-process": "^1.2.1",
-		"tree-kill": "^1.2.1"
-	}
+  "name": "racket-repl",
+  "displayName": "racket-repl",
+  "description": "Integrate Racket's REPL into Visual Studio Code.",
+  "version": "1.1.0",
+  "publisher": "Andes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndesVL/vscode-racket-repl.git"
+  },
+  "engines": {
+    "vscode": "^1.31.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:racket-repl.helloWorld",
+    "onLanguage:racket"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "racket-repl.run",
+        "title": "Run file in REPL",
+        "icon": {
+          "light": "./images/run-racket.png",
+          "dark": "./images/run-racket.png"
+        }
+      },
+      {
+        "command": "racket-repl.stop",
+        "title": "Stop REPL",
+        "icon": {
+          "light": "./images/stop-racket.png",
+          "dark": "./images/stop-racket.png"
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "racket",
+        "aliases": [
+          "Racket",
+          "racket"
+        ],
+        "extensions": [
+          ".rkt"
+        ]
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "editorLangId == racket && config.racket-repl.showRunCommandInEditorContextMenu",
+          "command": "racket-repl.run",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == racket && config.racket-repl.showStopCommandInEditorContextMenu",
+          "command": "racket-repl.stop",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Racket REPL configuration",
+      "properties": {
+        "racket-repl.showRunCommandInEditorContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show 'Run Code' icon in editor title menu.",
+          "scope": "resource"
+        },
+        "racket-repl.showStopCommandInEditorContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show 'Stop Code' icon in editor title menu.",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && ./compileAllTargets.sh",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "tslint": "^5.12.1",
+    "@types/node": "^10.12.21",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "find-process": "^1.2.1",
+    "tree-kill": "^1.2.1"
+  }
 }
