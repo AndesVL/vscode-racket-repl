@@ -1,6 +1,5 @@
 "use strict";
 import * as vscode from "vscode";
-import { win32 } from "path";
 const os = require('os');
 
 const os_type = os.platform();
@@ -41,7 +40,7 @@ export class REPLManager implements vscode.Disposable {
     public async stop(terminal: vscode.Terminal = this._terminal) {
         terminal.hide();
         const pid = await terminal.processId;
-        //On windows and linux require a different kill method.
+        //On windows and linux/mac require a different kill method.
         switch (os_type) {
             case 'win32': {
                 const kill = require('tree-kill');
@@ -77,6 +76,7 @@ export class REPLManager implements vscode.Disposable {
         switch (os_type) {
             case 'win32': launcher = 'launch_windows.exe'; break;
             case 'linux': launcher = 'launch_linux'; break;
+            case 'darwin': launcher = 'launch_mac'; break;
             default: {
                 vscode.window.showErrorMessage(`Your operating system: ${os_type}, is not yet supported.`);
                 return;
