@@ -74,7 +74,7 @@ export class REPLManager implements vscode.Disposable {
     private launch(dir: String, file: String) {
         var launcher: String;
         switch (os_type) {
-            case 'win32': launcher = 'launch_windows.exe'; break;
+            case 'win32': launcher = 'launch_windows.bat'; break;
             case 'linux': launcher = 'launch_linux'; break;
             case 'darwin': launcher = 'launch_mac'; break;
             default: {
