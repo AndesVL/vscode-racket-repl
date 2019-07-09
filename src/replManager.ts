@@ -84,6 +84,6 @@ export class REPLManager implements vscode.Disposable {
         }
         //Rust program launches Racket REPL and cleans up terminal, this hides the "sendText" command
         this._terminal.sendText(`cd ${__dirname}`); //binaries are stored in "out" folder
-        this._terminal.sendText(`./${launcher} ${dir} ${file}`);
+        this._terminal.sendText(`./${launcher} ${dir} ${file} \n exit`);
     }
 }
