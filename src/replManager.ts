@@ -33,7 +33,7 @@ export class REPLManager implements vscode.Disposable {
         this.launch(dir, file);
 
         //Focus terminal.
-        this._terminal.show(true);
+        this._terminal.show(false);
     }
 
     //Stops the REPL in the given terminal (defaults to running terminal).
