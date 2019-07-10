@@ -39,6 +39,14 @@
         }
       }
     ],
+    "keybindings": [
+      {
+        "command": "racket-repl.run",
+        "key": "ctrl+r ctrl+r",
+        "mac": "cmd+r cmd+r",
+        "when": "editorTextFocus && editorLangId == racket"
+      }
+    ],
     "languages": [
       {
         "id": "racket",

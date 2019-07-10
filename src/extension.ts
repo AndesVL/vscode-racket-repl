@@ -9,11 +9,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const manager = new REPLManager();
 
 	//Register run command
-	let run = vscode.commands.registerCommand('racket-repl.run', (fileUri) => {
+	let run = vscode.commands.registerTextEditorCommand('racket-repl.run', (editor: vscode.TextEditor) => {
+		const filepath: String = editor.document.fileName;
+
 		//Start REPL
-		manager.run(fileUri);
+		manager.run(filepath);
 		// Display a message box to the user containing the filename.
-		vscode.window.showInformationMessage('Running: ' + fileUri.path.substr(fileUri.path.lastIndexOf('/') + 1));
+		vscode.window.showInformationMessage('Running: ' + filepath.substr(filepath.lastIndexOf('/') + 1));
 	});
 
 	//Register stop command
