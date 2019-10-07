@@ -1,7 +1,9 @@
 "use strict";
 import * as vscode from "vscode";
 const os = require('os');
+const path = require('path');
 
+const sep = path.sep;
 const os_type = os.platform();
 
 export class REPLManager implements vscode.Disposable {
@@ -25,9 +27,8 @@ export class REPLManager implements vscode.Disposable {
         //Create a new terminal
         this._terminal = this.init_terminal();
 
-        var dir: String = filepath.substring(0, filepath.lastIndexOf("/"));
-        dir = this.formatPath(dir);
-        const file: String = filepath.substring(filepath.lastIndexOf("/") + 1);
+        var dir: String = filepath.substring(0, filepath.lastIndexOf(sep));
+        const file: String = filepath.substring(filepath.lastIndexOf(sep) + 1);
 
         //Start the REPL.
         this.launch(dir, file);
@@ -59,18 +60,8 @@ export class REPLManager implements vscode.Disposable {
         this.stop();
     }
 
-    //Formats a filepath correctly.
-    private formatPath(path: String): String {
-        switch (os_type) {
-            //On Windows systems, remove the first "/" in "/c:..."
-            case 'win32': return path.substr(1, path.length);
-            default: return path;
-        }
-    }
-
     //Launches the REPL script.
-    //This is a Rust program which clears the current terminal and then launches the REPL.
-    //Each OS has a different binary.
+    //Each OS has a different script for their respective default shell.
     private launch(dir: String, file: String) {
         var launcher: String;
         switch (os_type) {
@@ -82,8 +73,8 @@ export class REPLManager implements vscode.Disposable {
                 return;
             }
         }
-        //Rust program launches Racket REPL and cleans up terminal, this hides the "sendText" command
-        this._terminal.sendText(`cd ${__dirname}`); //binaries are stored in "out" folder
+
+        this._terminal.sendText(`cd ${__dirname}`); //scripts are stored in "out" folder
         this._terminal.sendText(`./${launcher} ${dir} ${file}`);
     }
 }
