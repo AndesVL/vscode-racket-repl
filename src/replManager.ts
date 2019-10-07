@@ -11,7 +11,7 @@ const os_type = os.platform();
 const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
 var win_shell: String = '';
-if (os_type === 'win32'){
+if (os_type === 'win32') {
     win_shell = get_file(win_shell_path, sep);
 }
 
@@ -85,7 +85,8 @@ export class REPLManager implements vscode.Disposable {
                     }
                 } break;
             case 'linux': {
-                launcher = './launch_linux';
+                launcher = `.${sep}launch_linux`;
+                console.log(`chmod +x ${__dirname}${sep}launch_linux`);
                 this._terminal.sendText(`chmod +x ${__dirname}${sep}launch_linux`); break;
             }
             case 'darwin': launcher = './launch_mac'; break;
@@ -96,6 +97,7 @@ export class REPLManager implements vscode.Disposable {
         }
 
         this._terminal.sendText(`cd ${__dirname}`); //scripts are stored in "out" folder
+        console.log(dir, sep, file);
         this._terminal.sendText(`${launcher} ${dir} ${file}`);
     }
 }
