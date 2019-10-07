@@ -93,10 +93,7 @@ export class REPLManager implements vscode.Disposable {
                         return;
                     }
                 } break;
-            case 'linux': {
-                launcher = `.${sep}launch_linux`;
-                this._terminal.sendText(`chmod +x ${__dirname}${sep}launch_linux`); break;
-            }
+            case 'linux': case 'linux': launcher = `.${sep}launch_linux`; break;
             case 'darwin': launcher = './launch_mac'; break;
             default: {
                 vscode.window.showErrorMessage(`Your operating system: ${os_type}, is not yet supported.`);
