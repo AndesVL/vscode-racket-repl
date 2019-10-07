@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.4.5]
+- Improved code
+
+(thank you @FastFoodChicken)
+
 ## [1.4.4]
 - Forgot to clear terminal
 
