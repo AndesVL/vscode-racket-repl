@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.4.0]
+- Various fixes
+- Added run shortcuts
+- Removed binary launchers
+
+(thanks to @Donaim)
+
 ## [1.3.0]
 - Better windows support (thanks to @default-kramer) 
 - REPL is more seamless in windows (terminal gets cleared)

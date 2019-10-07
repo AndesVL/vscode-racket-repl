@@ -9,8 +9,4 @@ The REPL launches in the integrated VSCode terminal (emulating DrRacket's repl).
 
 ## Requirements
 
-Racket needs to be installed (and added to the terminal's shell path).
-Currently only works when using Windows (batch) or Linux + Bash (or a similar shell).
-
-## ToDo
-- fix mac issues
+Racket needs to be installed and added to the shell's path.
