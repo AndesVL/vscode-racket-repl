@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.4.2]
+- Fixed linux launch (removed windows file encoding)
+- Attempt to fix mac
+
 ## [1.4.1]
 - Fixed linux launch
 - Removed unused artifacts
