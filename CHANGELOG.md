@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.4.1]
+- Fixed linux launch
+- Removed unused artifacts
+
 ## [1.4.0]
 - Various fixes
 - Added run shortcuts
