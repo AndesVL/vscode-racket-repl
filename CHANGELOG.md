@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.5.0]
+- Added beautiful artwork by @l5r
+
 ## [1.4.7]
 - Fixed mac permissions
 

@@ -2,6 +2,8 @@
 
 This extensions allows for Racket files to be run within Racket's REPL from Visual Studio Code's editor.
 
+![Logo](./images/logo.png)
+
 ## Features
 
 Run (or stop) the REPL using the buttons in the editor-title bar.
