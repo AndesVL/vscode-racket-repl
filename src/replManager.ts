@@ -17,7 +17,7 @@ export class REPLManager implements vscode.Disposable {
     }
 
     //Runs the REPL using the current file.
-    public async run(fileUri: vscode.Uri) {
+    public async run(filepath: String) {
 
         //Always run in a new terminal (I found no other way to close the Racket shell)
         //Stop the old terminal
@@ -25,9 +25,9 @@ export class REPLManager implements vscode.Disposable {
         //Create a new terminal
         this._terminal = this.init_terminal();
 
-        var dir: String = fileUri.path.substring(0, fileUri.path.lastIndexOf("/"));
+        var dir: String = filepath.substring(0, filepath.lastIndexOf("/"));
         dir = this.formatPath(dir);
-        const file: String = fileUri.path.substring(fileUri.path.lastIndexOf("/") + 1);
+        const file: String = filepath.substring(filepath.lastIndexOf("/") + 1);
 
         //Start the REPL.
         this.launch(dir, file);
