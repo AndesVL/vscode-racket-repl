@@ -10,7 +10,11 @@ const os_type = os.platform();
 
 const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
-const win_shell = get_file(win_shell_path, sep);
+var win_shell: String = '';
+if (os_type === 'win32'){
+    win_shell = get_file(win_shell_path, sep);
+}
+
 
 export class REPLManager implements vscode.Disposable {
     private _terminal: vscode.Terminal;
@@ -80,7 +84,10 @@ export class REPLManager implements vscode.Disposable {
                         return;
                     }
                 } break;
-            case 'linux': launcher = './sh launch_linux'; break;
+            case 'linux': {
+                launcher = './launch_linux';
+                this._terminal.sendText(`chmod +x ${__dirname}${sep}launch_linux`); break;
+            }
             case 'darwin': launcher = './launch_mac'; break;
             default: {
                 vscode.window.showErrorMessage(`Your operating system: ${os_type}, is not yet supported.`);
