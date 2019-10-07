@@ -74,9 +74,9 @@ export class REPLManager implements vscode.Disposable {
     private launch(dir: String, file: String) {
         var launcher: String;
         switch (os_type) {
-            case 'win32': launcher = 'launch_windows.bat'; break;
-            case 'linux': launcher = 'launch_linux'; break;
-            case 'darwin': launcher = 'launch_mac'; break;
+            case 'win32': launcher = './launch_windows.bat'; break;
+            case 'linux': launcher = 'sh launch_linux'; break;
+            case 'darwin': launcher = './launch_mac'; break;
             default: {
                 vscode.window.showErrorMessage(`Your operating system: ${os_type}, is not yet supported.`);
                 return;
@@ -84,6 +84,6 @@ export class REPLManager implements vscode.Disposable {
         }
         //Rust program launches Racket REPL and cleans up terminal, this hides the "sendText" command
         this._terminal.sendText(`cd ${__dirname}`); //binaries are stored in "out" folder
-        this._terminal.sendText(`./${launcher} ${dir} ${file}`);
+        this._terminal.sendText(`${launcher} ${dir} ${file}`);
     }
 }
