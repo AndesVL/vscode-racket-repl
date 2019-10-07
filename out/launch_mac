@@ -4,4 +4,4 @@ cd "$1"
 echo $cur
 
 
-racket -i -f "$cur/enter.rkt" "$1" "$2"
+clear && racket -i -f "$cur/enter.rkt" "$1" "$2"
