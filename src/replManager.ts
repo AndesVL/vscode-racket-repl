@@ -1,12 +1,16 @@
 "use strict";
 import * as vscode from "vscode";
-import { get_dir, get_file } from "./util";
+import { get_dir, get_file, make_do_once } from "./util";
 
 const os = require('os');
 const path = require('path');
 
 const sep = path.sep;
 const os_type = os.platform();
+
+const set_mac_perm = make_do_once((terminal) => {
+    terminal.sendText(`chmod +x ${__dirname}${sep}launch_mac`);
+});
 
 const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
@@ -45,6 +49,11 @@ export class REPLManager implements vscode.Disposable {
 
         //Focus terminal.
         this._terminal.show(false);
+
+        //On mac, the file permissions of the launch script need to be adjusted manually
+        if (os_type === 'darwin') {
+            set_mac_perm(this._terminal);
+        }
     }
 
     //Stops the REPL in the given terminal (defaults to running terminal).
