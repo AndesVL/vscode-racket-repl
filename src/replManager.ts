@@ -86,7 +86,6 @@ export class REPLManager implements vscode.Disposable {
                 } break;
             case 'linux': {
                 launcher = `.${sep}launch_linux`;
-                console.log(`chmod +x ${__dirname}${sep}launch_linux`);
                 this._terminal.sendText(`chmod +x ${__dirname}${sep}launch_linux`); break;
             }
             case 'darwin': launcher = './launch_mac'; break;
@@ -97,7 +96,6 @@ export class REPLManager implements vscode.Disposable {
         }
 
         this._terminal.sendText(`cd ${__dirname}`); //scripts are stored in "out" folder
-        console.log(dir, sep, file);
         this._terminal.sendText(`${launcher} ${dir} ${file}`);
     }
 }
