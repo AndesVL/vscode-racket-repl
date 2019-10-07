@@ -8,9 +8,9 @@ export function get_file(filepath: String, sep: string): String {
     return filepath.substring(filepath.lastIndexOf(sep) + 1);
 }
 
-export function make_do_once(action: (arg: any) => void): (arg: any) => void {
+export function make_do_once(action: (arg: any) => void): (arg: any) => Promise<void> {
     var first = true;
-    return (arg: any) => {
+    return async (arg: any) => {
         if (first) {
             action(arg);
             first = false;

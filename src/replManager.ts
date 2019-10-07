@@ -52,7 +52,7 @@ export class REPLManager implements vscode.Disposable {
 
         //On mac, the file permissions of the launch script need to be adjusted manually
         if (os_type === 'darwin') {
-            set_mac_perm(this._terminal);
+            await set_mac_perm(this._terminal);
         }
     }
 
