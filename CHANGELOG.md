@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.4.6]
+- Attempt to fix mac permissions
+
 ## [1.4.5]
 - Improved code
 
