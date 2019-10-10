@@ -102,6 +102,6 @@ export class REPLManager implements vscode.Disposable {
         }
 
         this._terminal.sendText(`cd ${__dirname}`); //scripts are stored in "out" folder
-        this._terminal.sendText(`${launcher} ${dir} ${file}`);
+        this._terminal.sendText(`${launcher} '${dir}' '${file}'`);
     }
 }
