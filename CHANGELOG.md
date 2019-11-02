@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.5.5]
+- Updated README
+
 ## [1.5.4]
 - Fixed file permissions for linux/mac
 - Fixed unmerged branch
