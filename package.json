@@ -2,11 +2,7 @@
   "name": "racket-repl",
   "displayName": "racket-repl",
   "description": "Integrate Racket's REPL into Visual Studio Code.",
-<<<<<<< HEAD
-  "version": "1.5.2",
-=======
   "version": "1.5.1",
->>>>>>> c103e8aaf41c233c595fd76a95326f275d3f445c
   "publisher": "Andes",
   "icon": "images/logo.png",
   "repository": {
