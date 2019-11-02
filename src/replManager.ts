@@ -1,6 +1,8 @@
 "use strict";
 import * as vscode from "vscode";
-import { get_dir, get_file, make_do_once } from "./util";
+import { get_dir, get_file } from "./util";
+
+const exec = require('child_process').exec;
 
 const os = require('os');
 const path = require('path');
@@ -8,9 +10,13 @@ const path = require('path');
 const sep = path.sep;
 const os_type = os.platform();
 
-const set_mac_perm = make_do_once((terminal) => {
-    terminal.sendText(`chmod +x ${__dirname}${sep}launch_mac`);
-});
+//Sets file persmissions to executable for the launch scripts.
+export function set_file_permission() {
+    switch (os_type) {
+        case 'linux': exec(`chmod +x ${__dirname}${sep}launch_linux`); break;
+        case 'darwin': exec(`chmod +x ${__dirname}${sep}launch_mac`); break;
+    }
+}
 
 const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
@@ -49,18 +55,13 @@ export class REPLManager implements vscode.Disposable {
 
         //Focus terminal.
         this._terminal.show(false);
-
-        //On mac, the file permissions of the launch script need to be adjusted manually
-        if (os_type === 'darwin') {
-            await set_mac_perm(this._terminal);
-        }
     }
 
     //Stops the REPL in the given terminal (defaults to running terminal).
     public async stop(terminal: vscode.Terminal = this._terminal) {
         terminal.hide();
         const pid = await terminal.processId;
-        //On windows and linux/mac require a different kill method.
+        //Windows and linux/mac require a different kill method.
         switch (os_type) {
             case 'win32': {
                 const kill = require('tree-kill');
@@ -68,7 +69,6 @@ export class REPLManager implements vscode.Disposable {
                 return;
             }
             default: {
-                const exec = require('child_process').exec;
                 exec(`kill -9 ${pid}`); //kill terminal process using SIGKILL
             }
         }
