@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { REPLManager } from "./replManager";
+import { REPLManager, set_file_permission} from "./replManager";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -23,6 +23,9 @@ export function activate(context: vscode.ExtensionContext) {
 		//Stop REPL
 		manager.stop();
 	});
+
+	//Set file permissions for scripts
+	set_file_permission();
 
 	context.subscriptions.push(run);
 }
