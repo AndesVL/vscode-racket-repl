@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
-## [1.5.1]
+## [1.5.2]
 - Fixed file permissions for linux/mac
 
 ## [1.5.0]
