@@ -1,8 +1,13 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
-## [1.5.2]
+## [1.5.3]
 - Fixed file permissions for linux/mac
+
+## [1.5.1]
+- Allow spaces in path or filename
+
+(thanks to @mathieuf20)
 
 ## [1.5.0]
 - Added beautiful artwork by @l5r
