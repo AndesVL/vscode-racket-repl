@@ -1,3 +1,4 @@
+#!/bin/bash
 
 export cur=$PWD
 cd "$1"
