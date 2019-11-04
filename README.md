@@ -13,3 +13,9 @@ When editing Racket files (.rkt extension is required), buttons appear in the ed
 ## Requirements
 
 Racket needs to be installed and added to the shell's path. 
+
+## Know bugs
+
+This extension is for some reason incompatible with:
+  vscode-scheme
+  `https://marketplace.visualstudio.com/items?itemName=sjhuangx.vscode-scheme`
