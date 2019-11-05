@@ -22,7 +22,7 @@ const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
 var win_shell: String = 'powershell.exe'; //default windows shell
 if (os_type === 'win32') {
-    if (!(null === win_shell_path)) { //may be null if user never changed this setting
+    if (null !== win_shell_path) { //may be null if user never changed his shell
         win_shell = get_file(win_shell_path, sep);
     }
 }
@@ -42,9 +42,10 @@ export class REPLManager implements vscode.Disposable {
     //Runs the REPL using the current file.
     public async run(filepath: String) {
 
-        //Always run in a new terminal (I found no other way to close the Racket shell)
+        //Always start repl in a new terminal (I found no other way to close the Racket shell)
         //Stop the old terminal
         this.stop(this._terminal);
+
         //Create a new terminal
         this._terminal = this.init_terminal();
 

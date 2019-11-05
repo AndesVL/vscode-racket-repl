@@ -1,8 +1,11 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.5.8]
+- Filepaths with spaces correctly work in Windows
+
 ## [1.5.7]
-- Fixed command not found bug in windows
+- Fixed "command not found" bug in Windows
 
 ## [1.5.6]
  - Bugfix by @bramvdbogaerde
@@ -11,7 +14,7 @@ All notable changes to the "racket-repl" extension will be documented in this fi
 - Updated README
 
 ## [1.5.4]
-- Fixed file permissions for linux/mac
+- Fixed file permissions for Linux and Mac
 - Fixed unmerged branch
 
 ## [1.5.1]
@@ -37,7 +40,7 @@ All notable changes to the "racket-repl" extension will be documented in this fi
 - Forgot to clear terminal
 
 ## [1.4.3]
-- Fixed linux launch (removed windows file encoding)
+- Fixed linux launch (removed Windows file encoding)
 - Attempt to fix mac
 
 ## [1.4.1]
@@ -52,12 +55,12 @@ All notable changes to the "racket-repl" extension will be documented in this fi
 (thanks to @Donaim)
 
 ## [1.3.0]
-- Better windows support (thanks to @default-kramer) 
-- REPL is more seamless in windows (terminal gets cleared)
+- Better Windows support (thanks to @default-kramer) 
+- REPL is more seamless in Windows (terminal gets cleared)
 
 ## [1.2.0]
 - Fixed various bugs
-- Now works on linux/bash and powershell
+- Now works on Linux/bash and Powershell
 - Linux/bash: terminal is cleared before entering REPL
 - Start/Stop buttons are only visible when editing Racket files
 
