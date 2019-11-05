@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "racket-repl" extension will be documented in this file.
 
+## [1.5.7]
+- Fixed command not found bug in windows
+
 ## [1.5.6]
  - Bugfix by @bramvdbogaerde
 

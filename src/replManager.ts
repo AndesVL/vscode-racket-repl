@@ -20,11 +20,12 @@ export function set_file_permission() {
 
 const config = vscode.workspace.getConfiguration();
 const win_shell_path = config.get<string>('terminal.integrated.shell.windows')!;
-var win_shell: String = '';
+var win_shell: String = 'powershell.exe'; //default windows shell
 if (os_type === 'win32') {
-    win_shell = get_file(win_shell_path, sep);
+    if (!(null === win_shell_path)) { //may be null if user never changed this setting
+        win_shell = get_file(win_shell_path, sep);
+    }
 }
-
 
 export class REPLManager implements vscode.Disposable {
     private _terminal: vscode.Terminal;
